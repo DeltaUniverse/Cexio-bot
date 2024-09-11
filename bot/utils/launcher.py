@@ -1,32 +1,30 @@
-import argparse
-import asyncio
-import glob
 import os
+import glob
+import asyncio
+import argparse
 from itertools import cycle
 
-from better_proxy import Proxy
 from pyrogram import Client
+from better_proxy import Proxy
 
 from bot.config import settings
-from bot.core.registrator import register_sessions
-from bot.core.tapper import run_tapper
 from bot.utils import logger
+from bot.core.tapper import run_tapper
+from bot.core.registrator import register_sessions
+
 
 start_text = """
 
- __   ___        __      __   __  ___
-/  ` |__  \_/ | /  \    |__) /  \  |
-\__, |___ / \ | \__/    |__) \__/  |
-
-
-Select an action:
-
+ __   ___        __      __   __  ___ 
+/  ` |__  \_/ | /  \    |__) /  \  |  
+\__, |___ / \ | \__/    |__) \__/  |  
+                                     
+            
     1. Run clicker
     2. Create session
 """
 
 global tg_clients
-
 
 def get_session_names() -> list[str]:
     session_names = sorted(glob.glob("sessions/*.session"))
@@ -76,9 +74,7 @@ async def process() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("-a", "--action", type=int, help="Action to perform")
 
-    logger.info(
-        f"Detected {len(get_session_names())} sessions | {len(get_proxies())} proxies"
-    )
+    logger.info(f"Detected {len(get_session_names())} sessions | {len(get_proxies())} proxies")
 
     action = parser.parse_args().action
 
