@@ -648,10 +648,8 @@ class Tapper:
                                 settings.RANDOM_TAPS_COUNT[1],
                             )
                         )
-                        if int(taps) >= 1000:
-                            logger.warning(
-                                f"{self.session_name} | Invaild taps count..."
-                            )
+                        if int(taps) >= 80:
+                            taps = str(int(taps) // 2)
                         elif self.energy > settings.SLEEP_BY_MIN_ENERGY:
                             await self.tap(http_client, authToken, taps)
                         else:
@@ -661,6 +659,7 @@ class Tapper:
                             settings.SLEEP_BETWEEN_TAPS[0],
                             settings.SLEEP_BETWEEN_TAPS[1],
                         )
+                        sleep_ += 10
                         self.energy += sleep_ * 3
                         if self.energy > self.energy_limit:
                             self.energy = self.energy_limit
