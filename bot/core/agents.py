@@ -14,12 +14,7 @@ def generate_random_user_agent(device_type="android", browser_type="chrome"):
             f"{major_version}.{minor_version}.{build_version}.{patch_version}"
         )
     elif browser_type == "firefox":
-        major_version = random.choice(firefox_versions)
-        minor_version = random.randint(0, 9)
-        browser_version = f"{major_version}.{minor_version}"
-
-    else:
-        raise ValueError("Invalid browser type. Supported types: 'chrome', 'firefox'")
+        browser_version = random.choice(firefox_versions)
 
     if device_type == "android":
         android_versions = ["10.0", "11.0", "12.0", "13.0"]
@@ -31,11 +26,56 @@ def generate_random_user_agent(device_type="android", browser_type="chrome"):
                 "Pixel 4a",
                 "Pixel 6 Pro",
                 "SM-N975F",
+                "SM-G973F",
+                "Pixel 3",
+                "SM-G980F",
+                "Pixel 5a",
+                "SM-G998B",
+                "Pixel 4",
+                "SM-G991B",
+                "SM-G996B",
+                "SM-F711B",
+                "SM-F916B",
+                "SM-G781B",
+                "SM-N986B",
+                "SM-N981B",
+                "Pixel 2",
+                "Pixel 2 XL",
+                "Pixel 3 XL",
+                "Pixel 4 XL",
+                "Pixel 5 XL",
+                "Pixel 6",
+                "Pixel 6 XL",
+                "Pixel 6a",
+                "Pixel 7",
+                "Pixel 7 Pro",
                 "OnePlus 8",
+                "OnePlus 8 Pro",
+                "OnePlus 9",
+                "OnePlus 9 Pro",
+                "OnePlus Nord",
+                "OnePlus Nord 2",
+                "OnePlus Nord CE",
+                "OnePlus 10",
+                "OnePlus 10 Pro",
+                "OnePlus 10T",
+                "OnePlus 10T Pro",
                 "Xiaomi Mi 9",
+                "Xiaomi Mi 10",
+                "Xiaomi Mi 11",
+                "Xiaomi Redmi Note 8",
+                "Xiaomi Redmi Note 9",
+                "Huawei P30",
                 "Huawei P40",
+                "Huawei Mate 30",
+                "Huawei Mate 40",
                 "Sony Xperia 1",
+                "Sony Xperia 5",
+                "LG G8",
+                "LG V50",
+                "LG V60",
                 "Nokia 8.3",
+                "Nokia 9 PureView",
             ]
         )
         android_version = random.choice(android_versions)
@@ -46,8 +86,8 @@ def generate_random_user_agent(device_type="android", browser_type="chrome"):
             )
         elif browser_type == "firefox":
             return (
-                f"Mozilla/5.0 (Android {android_version}; Mobile; rv:{major_version}.0) "
-                f"Gecko/{major_version}.0 Firefox/{major_version}.0"
+                f"Mozilla/5.0 (Android {android_version}; Mobile; rv:{browser_version}.0) "
+                f"Gecko/{browser_version}.0 Firefox/{browser_version}.0"
             )
 
     elif device_type == "ios":
@@ -74,25 +114,20 @@ def generate_random_user_agent(device_type="android", browser_type="chrome"):
             )
         elif browser_type == "firefox":
             return (
-                f"Mozilla/5.0 (Windows NT {windows_version}; Win64; x64; rv:{major_version}.0) "
-                f"Gecko/{major_version}.0 Firefox/{major_version}.0"
+                f"Mozilla/5.0 (Windows NT {windows_version}; Win64; x64; rv:{browser_version}.0) "
+                f"Gecko/{browser_version}.0 Firefox/{browser_version}.0"
             )
 
     elif device_type == "ubuntu":
-        ubuntu_versions = ["20.04", "21.04", "22.04"]
-        ubuntu_version = random.choice(ubuntu_versions)
         if browser_type == "chrome":
             return (
-                f"Mozilla/5.0 (X11; Ubuntu {ubuntu_version}; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) "
+                f"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:94.0) AppleWebKit/537.36 (KHTML, like Gecko) "
                 f"Chrome/{browser_version} Safari/537.36"
             )
         elif browser_type == "firefox":
             return (
-                f"Mozilla/5.0 (X11; Ubuntu {ubuntu_version}; Linux x86_64; rv:{major_version}.0) "
-                f"Gecko/{major_version}.0 Firefox/{major_version}.0"
+                f"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:{browser_version}.0) Gecko/{browser_version}.0 "
+                f"Firefox/{browser_version}.0"
             )
 
-    else:
-        raise ValueError(
-            "Invalid device type. Supported types: 'android', 'ios', 'windows', 'ubuntu'"
-        )
+    return None
